@@ -7,7 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  public selectedProviders = [];
+  showSaved: boolean = false;
+
+  public selectedProviders = [
+    {
+      id: '4',
+      name: 'Sally',
+      address: '733 Saint Nicholas',
+      phone: '9495552930'
+    }
+  ];
   public unselectedProviders = [
     {
       id: '1',
@@ -28,6 +37,37 @@ export class ListComponent implements OnInit {
       phone: '4343219384'
     }
   ];
+
+  sortProviders(list) {
+    list.sort((prov1, prov2) => {
+      return Number(prov1.id) - Number(prov2.id)
+    })
+  }
+
+  toggleProviderPage() {
+    this.showSaved = !this.showSaved
+  }
+
+  switchProvider(id, from, to) {
+    from.forEach((provider, i) => {
+      if (provider.id === id) {
+        let prov = from[i]
+        to.push(prov)
+        from.splice(i, 1)
+        this.sortProviders(to)
+      }
+    })
+  }
+
+  addToSaved(e) {
+    let targetId: string = e.target.parentNode.id
+    this.switchProvider(targetId, this.unselectedProviders, this.selectedProviders)
+  }
+
+  removeFromSaved(e) {
+    let targetId: string = e.target.id
+    this.switchProvider(targetId, this.selectedProviders, this.unselectedProviders)
+  }
 
   constructor() {}
 

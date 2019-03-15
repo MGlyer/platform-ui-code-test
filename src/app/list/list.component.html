@@ -1,4 +1,22 @@
 <div class="list-container">
-  <h2>Providers</h2>
+  <div *ngIf="!showSaved" class="unselectedProvidersWrapper" >
+    <div class="unselectedProviders">
+        <h2>Available Providers</h2>
+        <button class="toggleProviders" (click)="toggleProviderPage()">Show Saved Providers</button>
+      <app-card *ngFor="let provider of unselectedProviders" [provider]="provider" [inSelected]=false 
+        (notifyParent)="addToSaved($event)"
+      ></app-card>
+    </div>
+  </div>
+  
+  <div *ngIf="showSaved" class="selectedProvidersWrapper">
+    <div class="selectedProviders">
+      <h2>Saved Providers</h2>
+      <button class="toggleProviders" (click)="toggleProviderPage()">Show Available Providers</button>
+      <app-card *ngFor="let provider of selectedProviders" [provider]="provider" [inSelected]=true 
+      (notifyParent)="removeFromSaved($event)"
+      ></app-card>
+    </div>
+  </div>
 
 </div>

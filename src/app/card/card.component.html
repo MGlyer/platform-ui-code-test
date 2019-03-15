@@ -1,0 +1,13 @@
+<ul>
+  <div *ngIf="inSelected"> 
+    <button  (click)="removeFromSaved($event)" id={{provider.id}}>X</button>
+    <li> {{provider.name}} </li>
+    <li> {{provider.address}} </li>
+    <li> {{provider.phone}} </li>
+  </div>
+  <div *ngIf="!inSelected" (click)="addToSaved($event)" id={{provider.id}}> 
+    <li> {{provider.name}} </li>
+    <li> {{provider.address}} </li>
+    <li> {{provider.phone}} </li>
+  </div>
+</ul>
