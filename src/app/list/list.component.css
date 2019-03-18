@@ -8,3 +8,7 @@
 h2 {
   border-bottom: 1px solid lightgray;
 }
+
+.unselectedProviders, .selectedProviders {
+  margin-left: 5%;
+}

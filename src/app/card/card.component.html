@@ -1,13 +1,18 @@
-<ul>
-  <div *ngIf="inSelected"> 
+<div class = "providerCard">
+  <!-- selected Providers -->
+  <div *ngIf="inSelected" > 
     <button  (click)="removeFromSaved($event)" id={{provider.id}}>X</button>
-    <li> {{provider.name}} </li>
-    <li> {{provider.address}} </li>
-    <li> {{provider.phone}} </li>
+    <ul class="providerWrapper">
+      <li>Name: {{provider.name}} </li>
+      <li>Address: {{provider.address}} </li>
+      <li>Phone: {{provider.phone}} </li>
+    </ul>
   </div>
-  <div *ngIf="!inSelected" (click)="addToSaved($event)" id={{provider.id}}> 
-    <li> {{provider.name}} </li>
-    <li> {{provider.address}} </li>
-    <li> {{provider.phone}} </li>
-  </div>
-</ul>
+
+  <!-- unselected Providers -->
+  <ul *ngIf="!inSelected" (click)="addToSaved($event)" id={{provider.id}} class="providerWrapper"> 
+    <li>Name: {{provider.name}} </li>
+    <li>Address: {{provider.address}} </li>
+    <li>Phone: {{provider.phone}} </li>
+  </ul>
+</div>
